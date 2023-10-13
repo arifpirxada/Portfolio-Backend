@@ -4,8 +4,13 @@ port = process.env.PORT || 3000;
 require("dotenv").config();
 const db = require("./dbcon");
 const contact = require("./models/contact");
+const cors = require("cors")
 
 app.use(express.json());
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true
+}))
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
@@ -13,7 +18,7 @@ app.get("/", (req, res) => {
 
 app.get("/read-contact", async (req, res) => {
   try {
-    const contactData = await contact.find();
+    const contactData = await contact.find().sort({_id: -1});
     res.status(200).send(contactData);
   } catch (e) {
     console.log(e);
@@ -60,5 +65,5 @@ app.delete("/delete-contact", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Port: ${port};Listening...`);
+  console.log(`Listening...; Port: ${port}`);
 });
