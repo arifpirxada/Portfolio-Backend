@@ -8,7 +8,7 @@ const cors = require("cors")
 
 app.use(express.json());
 app.use(cors({
-  origin: "https://arifpirxada.netlify.app/",
+  origin: "https://arifpirxada.netlify.app",
   credentials: true
 }))
 
