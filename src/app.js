@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 port = process.env.PORT || 3000;
 require("dotenv").config();
-const db = require("./dbcon");
+require("./dbcon");
+const sendNewMail = require("./mail.js")
 const contact = require("./models/contact");
 const cors = require("cors")
 
@@ -37,6 +38,7 @@ app.post("/add-contact", async (req, res) => {
       read: 0,
     });
     await contactData.save();
+    sendNewMail(req.body.name, req.body.email, req.body.social, req.body.phone, req.body.message).catch(console.error);
     res.status(201).json({ message: "Insertion successful" });
   } catch (e) {
     console.log(e);
