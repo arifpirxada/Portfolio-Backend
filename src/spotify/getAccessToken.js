@@ -3,7 +3,9 @@ require('dotenv').config();
 
 async function getAccessToken() {
   const { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_REFRESH_TOKEN } = process.env;
-
+  console.log("SPOTIFY_CLIENT_ID", SPOTIFY_CLIENT_ID)
+  console.log("SPOTIFY_CLIENT_SECRET", SPOTIFY_CLIENT_ID)
+  console.log("SPOTIFY_REFRESH_TOKEN", SPOTIFY_CLIENT_ID)
   const tokenUrl = 'https://accounts.spotify.com/api/token';
   const params = new URLSearchParams();
   params.append('grant_type', 'refresh_token');
