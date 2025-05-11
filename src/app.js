@@ -7,6 +7,8 @@ const sendNewMail = require("./mail.js")
 const contact = require("./models/contact");
 const cors = require("cors")
 
+const spotifyRouter = require("./spotify/index.js")
+
 app.use(express.json());
 app.use(cors({
   origin: "https://arifpirxada.netlify.app",
@@ -65,6 +67,8 @@ app.delete("/delete-contact", async (req, res) => {
     res.status(400).json({ message: "Internal server error" });
   }
 });
+
+app.use(spotifyRouter);
 
 app.listen(port, () => {
   console.log(`Listening...; Port: ${port}`);
